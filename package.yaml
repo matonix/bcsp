@@ -1,0 +1,41 @@
+name: bcsp
+version: '0.1.0'
+category: Web
+author: maton
+maintainer: automatonix@gmail.com
+copyright: Yokoyama Haruki
+license: BSD3
+github: matonix/bcsp
+
+dependencies:
+- base >=4.7 && <5
+- hxt
+- hxt-xpath
+- hxt-curl
+- hxt-tagsoup
+- cassava
+- bytestring
+ghc-options:
+- -Wall
+
+library:
+  source-dirs: src
+
+executables:
+  bcsp:
+    main: Main.hs
+    source-dirs: app
+    dependencies:
+    - bcsp
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+
+tests:
+  bcsp-test:
+    main: Spec.hs
+    source-dirs: test
+    dependencies:
+    - bcsp
+    - hspec
