@@ -22,6 +22,10 @@ main = do
   let two = zipWith (\[x, y] (cp, cnt) -> (y, x, cp, cnt)) couples cps'
   BS.writeFile "cp.csv" . Csv.encode $ one ++ two
 
+  -- -- coverage
+  -- print $ length cps'
+  -- print $ length $ filter ((/=0) . snd) cps'
+
 scrape :: IO ()
 scrape = do
   let tagss = map combs $ comb 2 chars
