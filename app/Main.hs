@@ -18,7 +18,9 @@ main = do
   cps <- (read :: String -> [[(String, Int)]]) <$> readFile "test.txt"
   let cps' = map (maximumBy (compare `on` snd)) cps
   let couples = comb 2 characters
-  BS.writeFile "cp.csv" . Csv.encode $ zipWith (\[x, y] (cp, cnt) -> (x, y, cp, cnt)) couples cps'
+  let one = zipWith (\[x, y] (cp, cnt) -> (x, y, cp, cnt)) couples cps'
+  let two = zipWith (\[x, y] (cp, cnt) -> (y, x, cp, cnt)) couples cps'
+  BS.writeFile "cp.csv" . Csv.encode $ one ++ two
 
 scrape :: IO ()
 scrape = do
